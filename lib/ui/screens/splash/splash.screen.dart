@@ -20,9 +20,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Timer(
-      Duration(seconds: 5),
+      Duration(seconds: 3),
       () {
-        Get.toNamed(Routes.dashboard);
+        Get.toNamed(Routes.login);
       },
     );
 
