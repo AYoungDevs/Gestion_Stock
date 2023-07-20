@@ -18,5 +18,11 @@ class AppRouting {
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 350),
     ),
+    GetPage(
+      name: Routes.dashboard,
+      page: () => const DashboardScreen(),
+      transition: Transition.fade,
+      transitionDuration: const Duration(milliseconds: 350),
+    ),
   ];
 }

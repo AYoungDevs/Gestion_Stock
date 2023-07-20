@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       // theme: AppTheme.light,
       // darkTheme: AppTheme.dark,
       getPages: AppRouting.appRoutes,
-      initialRoute: Routes.splash,
+      initialRoute: Routes.login,
       // supportedLocales: const [
       //   Locale('fr', ''),
       //   Locale('en', ''),
