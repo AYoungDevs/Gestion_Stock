@@ -1,6 +1,10 @@
 // ignore_for_file: unused_local_variable, prefer_const_constructors, avoid_unnecessary_containers
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:gestion_stock/app/routes.dart';
+import 'package:get/route_manager.dart';
 
 import '../../styles/colors.style.dart';
 import 'package:gestion_stock/features/constants.features.dart';
@@ -13,6 +17,18 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    Timer(
+      Duration(seconds: 3),
+      () {
+        Get.toNamed(Routes.login);
+      },
+    );
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     // Récupérer la taille de l'écran
@@ -41,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   child: Text(
                     APP_NAME,
                     style: TextStyle(
-                      color: backgroundColor,
+                      color: secondaryColor,
                       fontSize: 64,
                     ),
                   ),
@@ -57,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   child: Text(
                     'Chargement...',
                     style: TextStyle(
-                      color: backgroundColor,
+                      color: secondaryColor,
                     ),
                   ),
                 ),

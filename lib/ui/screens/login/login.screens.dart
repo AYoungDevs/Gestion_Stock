@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
             left: 0,
             right: 0,
             child: Container(
-              color: backgroundColor,
+              color: secondaryColor,
               height: screenHeight * 0.6,
             )),
         Positioned(
@@ -48,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
               APP_NAME,
               style: TextStyle(
                 fontSize: 64,
-                color: backgroundColor,
+                color: secondaryColor,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -61,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
               width: 500,
               height: 450,
               decoration: BoxDecoration(
-                color: backgroundColor,
+                color: secondaryColor,
                 borderRadius: BorderRadius.circular(15),
                 boxShadow: [
                   BoxShadow(

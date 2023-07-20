@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 const Color primaryColor = Color(0xff081A51);
+const Color primaryOpacityColor = Color(0xff1B2B65);
 const Color primaryConstratColor = Colors.deepPurple;
 const Color darkColor = Color(0xff000000);
-const Color secondaryColor = Color(0xff434B5D);
-const Color backgroundColor = Colors.white;
-Color pageBackgroundColor = Colors.grey.shade300;
+const Color backgroundColor = Color(0xff434B5D);
+const Color secondaryColor = Colors.white;
+const Color pageBackgroundColor = Color(0xffF8F9FF);
 const Color canvasColor = Color(0xffFFF4DE);
 const Color textPrimaryColor = Color(0xff042C5C);
 const Color textSecondaryColor = Color(0xff77869E);
