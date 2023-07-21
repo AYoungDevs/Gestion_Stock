@@ -22,47 +22,64 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     double screenHeight = screenSize.height;
 
     return Drawer(
-      backgroundColor: primaryColor,
-      child: Column(
-        children: [
-          SizedBox(
-            height: screenHeight / 50,
-          ),
-          Container(
-            child: Text(
-              APP_NAME,
-              style: TextStyle(fontSize: 24, color: secondaryColor),
+      elevation: 0,
+      child: Container(
+        width: double.infinity,
+        height: screenHeight,
+        color: primaryColor,
+        child: Column(
+          children: [
+            SizedBox(
+              height: screenHeight / 50,
             ),
-          ),
-          SizedBox(
-            height: screenHeight / 10,
-          ),
-          // Container(
-          //   height: screenHeight / 14,
-          //   width: screenWidth / 5,
-          //   alignment: Alignment.center,
-          //   color: primaryOpacityColor,
-          //   child: Text(
-          //     'Acceuil',
-          //     style: TextStyle(fontSize: 24, color: secondaryColor),
-          //   ),
-          // ),
-          DrawerNavigationMenu(
-            title: 'Acceuil',
-          ),
-          SizedBox(
-            height: screenHeight / 42,
-          ),
-          DrawerNavigationMenu(
-            title: 'Ventes',
-          ),
-          SizedBox(
-            height: screenHeight / 42,
-          ),
-          DrawerNavigationMenu(
-            title: 'Rapport',
-          ),
-        ],
+            Container(
+              child: Text(
+                APP_NAME,
+                style: TextStyle(fontSize: 24, color: secondaryColor),
+              ),
+            ),
+            SizedBox(
+              height: screenHeight / 20,
+            ),
+            DrawerNavigationMenu(
+              title: 'Acceuil',
+            ),
+            SizedBox(
+              height: screenHeight / 42,
+            ),
+            DrawerNavigationMenu(
+              title: 'Ventes',
+            ),
+            SizedBox(
+              height: screenHeight / 42,
+            ),
+            DrawerNavigationMenu(
+              title: 'Rapport',
+            ),
+            SizedBox(
+              height: screenHeight * 0.45,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: screenHeight / 8,
+                  width: screenWidth / 19,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/personne.jpg"),
+                    ),
+                  ),
+                ),
+                Text(
+                  "Michel Ahoba",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, unused_local_variable
 
 import 'package:flutter/material.dart';
+import 'package:gestion_stock/app/routes.dart';
 import 'package:gestion_stock/features/constants.features.dart';
+import 'package:get/get.dart';
 
 import '../../styles/colors.style.dart';
 
@@ -88,7 +90,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed(Routes.dashboard);
+                      },
                       child: const Text('Se Connecter'),
                     ),
                   ],

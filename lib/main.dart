@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_stock/ui/styles/colors.style.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'app/app.routing.dart';
@@ -18,7 +19,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: APP_NAME,
-      // theme: AppTheme.light,
+      color: pageBackgroundColor,
+      theme: ThemeData(
+        scaffoldBackgroundColor: pageBackgroundColor,
+      ),
       // darkTheme: AppTheme.dark,
       getPages: AppRouting.appRoutes,
       initialRoute: Routes.splash,

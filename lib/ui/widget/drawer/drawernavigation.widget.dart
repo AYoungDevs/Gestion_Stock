@@ -24,10 +24,11 @@ class DrawerNavigationMenu extends StatelessWidget {
       height: screenHeight / 14,
       width: screenWidth / 5,
       alignment: Alignment.center,
-      // color: primaryOpacityColor,
+      color: primaryOpacityColor,
       child: ElevatedButton(
+        // autofocus: true,
         style: ElevatedButton.styleFrom(
-          primary: primaryOpacityColor,
+          backgroundColor: primaryOpacityColor,
         ),
         onPressed: () {},
         child: Text(
