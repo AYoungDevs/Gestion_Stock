@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const Color primaryColor = Color(0xff081A51);
+const Color primaryColorTransparent = Color(0xff5A6AA3);
 const Color primaryOpacityColor = Color(0xff1B2B65);
 const Color primaryConstratColor = Colors.deepPurple;
 const Color darkColor = Color(0xff000000);
