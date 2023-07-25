@@ -34,12 +34,12 @@ class _LoginScreenState extends State<LoginScreen> {
           color: primaryColor,
         ),
         Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
+            top: screenHeight * 0.4,
+            left: screenWidth * 0,
+            right: screenWidth * 0,
             child: Container(
               color: secondaryColor,
-              height: screenHeight * 0.6,
+              height: screenHeight * 0.7,
             )),
         Positioned(
           top: screenHeight * 0.1,
@@ -49,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Text(
               APP_NAME,
               style: TextStyle(
-                fontSize: 64,
+                fontSize: 74,
                 color: secondaryColor,
                 fontWeight: FontWeight.bold,
               ),
@@ -57,44 +57,73 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 20, top: 200, right: 20, bottom: 10),
+          padding: EdgeInsets.only(
+            top: screenHeight * 0.2,
+            right: screenWidth * 0,
+          ),
           child: Center(
             child: Container(
               width: 500,
               height: 450,
               decoration: BoxDecoration(
                 color: secondaryColor,
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
                     color: greyColor.withOpacity(0.5),
                     spreadRadius: 2,
-                    blurRadius: 2,
+                    blurRadius: 20,
                     offset: const Offset(-3, 0),
                   ),
                 ],
               ),
               child: Padding(
-                padding: const EdgeInsets.all(150.0),
+                padding: const EdgeInsets.only(left: 100, top: 50, right: 100),
                 child: Form(
                     child: Column(
                   children: [
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Login',
+                    Padding(
+                      padding: const EdgeInsets.only(top: 0, bottom: 50),
+                      child: Text(
+                        "Connexion",
+                        style: TextStyle(
+                          fontSize: 45,
+                          color: darkColor,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Mot de passe',
+                    Padding(
+                      padding: const EdgeInsets.only(top: 0, bottom: 20),
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          labelText: 'Login',
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15.0))),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 0, bottom: 20),
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          labelText: 'Mot de passe',
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15.0))),
+                        ),
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () {
-                        Get.toNamed(Routes.dashboard);
-                      },
-                      child: const Text('Se Connecter'),
-                    ),
+                        onPressed: () {
+                          Get.toNamed(Routes.dashboard);
+                        },
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateColor.resolveWith(
+                              (states) => primaryColor),
+                        ),
+                        child: Text('Se Connecter')),
                   ],
                 )),
               ),
