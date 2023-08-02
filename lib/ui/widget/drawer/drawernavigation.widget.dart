@@ -6,10 +6,10 @@ import 'package:gestion_stock/ui/styles/colors.style.dart';
 class DrawerNavigationMenu extends StatelessWidget {
   const DrawerNavigationMenu({
     Key? key,
-    required this.title,
+    required this.child,
   }) : super(key: key);
 
-  final String title;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -25,17 +25,7 @@ class DrawerNavigationMenu extends StatelessWidget {
       width: screenWidth / 5,
       alignment: Alignment.center,
       color: primaryOpacityColor,
-      child: ElevatedButton(
-        // autofocus: true,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: primaryOpacityColor,
-        ),
-        onPressed: () {},
-        child: Text(
-          title,
-          style: TextStyle(fontSize: 24, color: secondaryColor),
-        ),
-      ),
+      child: child,
     );
   }
 }
