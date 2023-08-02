@@ -19,8 +19,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   @override
   Widget build(BuildContext context) {
     Size? screenSize = MediaQuery.of(context).size;
-    double screenWidth = screenSize?.width ?? 0;
-    double screenHeight = screenSize?.height ?? 0;
+    double screenWidth = screenSize.width;
+    double screenHeight = screenSize.height;
 
     return Drawer(
       elevation: 0,
@@ -43,12 +43,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               height: screenHeight / 20,
             ),
             DrawerNavigationMenu(
-              child: ElevatedButton(
-                // autofocus: true,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: primaryOpacityColor,
-                ),
-                onPressed: () {
+              child: InkWell(
+                onTap: () {
                   Get.toNamed(Routes.dashboard);
                 },
                 child: Text(
@@ -61,12 +57,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               height: screenHeight / 42,
             ),
             DrawerNavigationMenu(
-              child: ElevatedButton(
-                // autofocus: true,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: primaryOpacityColor,
-                ),
-                onPressed: () {},
+              child: InkWell(
+                onTap: () {},
                 child: Text(
                   "Ventes",
                   style: TextStyle(fontSize: 24, color: secondaryColor),
@@ -77,12 +69,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               height: screenHeight / 42,
             ),
             DrawerNavigationMenu(
-              child: ElevatedButton(
-                // autofocus: true,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: primaryOpacityColor,
-                ),
-                onPressed: () {},
+              child: InkWell(
+                onTap: () {},
                 child: Text(
                   "Rapport",
                   style: TextStyle(fontSize: 24, color: secondaryColor),
