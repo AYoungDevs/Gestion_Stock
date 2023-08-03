@@ -98,7 +98,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: TextFormField(
                         decoration: const InputDecoration(
                           labelText: 'Login',
-                          border: OutlineInputBorder(
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: primaryColor),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15.0))),
                         ),
@@ -109,7 +110,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: TextFormField(
                         decoration: const InputDecoration(
                           labelText: 'Mot de passe',
-                          border: OutlineInputBorder(
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: primaryColor),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15.0))),
                         ),
