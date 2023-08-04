@@ -108,8 +108,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 0, bottom: 20),
                       child: TextFormField(
+                        obscureText: true,
+                        // maxLength: 8,
                         decoration: const InputDecoration(
                           labelText: 'Mot de passe',
+                          // hintText: 'Entrez votre mot de passe',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: primaryColor),
                               borderRadius:

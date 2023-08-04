@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, unused_local_variable, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:gestion_stock/ui/styles/colors.style.dart';
 import 'package:gestion_stock/ui/widget/drawer/drawer.widget.dart';
 
 class ProfilScreen extends StatefulWidget {
@@ -29,9 +30,50 @@ class _ProfilScreenState extends State<ProfilScreen> {
               child: DrawerWidget(),
             ),
             Expanded(
-              flex: 13,
-              child: Text("vanhouan"),
-            ),
+                flex: 13,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsets.only(left: 20, right: 45, bottom: 150),
+                      child: Container(
+                          width: 360,
+                          height: 500,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: profilColor1,
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: screenHeight / 7,
+                                width: screenWidth / 19,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        "assets/images/personne.jpg"),
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                "Michel Ahoba",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 20),
+                              ),
+                            ],
+                          )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(right: 0),
+                      child: Container(
+                        width: 750,
+                        height: 650,
+                        color: profilColor12,
+                      ),
+                    ),
+                  ],
+                )),
           ],
         ),
       ),
