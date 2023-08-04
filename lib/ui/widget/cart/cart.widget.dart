@@ -30,148 +30,185 @@ class _CartWidgetState extends State<CartWidget> {
         ),
         width: double.infinity,
         height: screenHeight,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 15,
-                    vertical: 16,
-                  ),
-                  child: Text(
-                    'Vente récente',
-                  ),
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 15,
+                  vertical: 16,
+                ),
+                child: Text(
+                  'Vente récente',
                 ),
               ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 15,
-                  ),
-                  child: Text(
-                    '#052023',
-                    style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
-                  ),
+            ),
+            Container(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 15,
+                ),
+                child: Text(
+                  '#052023',
+                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
                 ),
               ),
-              // SizedBox(
-              //   height: screenHeight / 80,
-              // ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Container(
-                      height: screenHeight / 6,
-                      // color: primaryColor,
-                      child: Row(
-                        children: [
-                          Container(
-                            height: screenHeight / 8,
-                            // width: 150,
-                            decoration: BoxDecoration(
-                              color: secondaryColor,
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                color: colorNumber,
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset(
-                                products[0].image,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Column(
+            ),
+            // SizedBox(
+            //   height: screenHeight / 80,
+            // ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 4,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: screenHeight / 6,
+                          // color: primaryColor,
+                          child: Row(
                             children: [
-                              SizedBox(
-                                height: screenHeight / 45,
-                              ),
                               Container(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  "Coca-Cola",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    // color: secondaryColor,
-                                    color: primaryColor,
+                                height: screenHeight / 8,
+                                // width: 150,
+                                decoration: BoxDecoration(
+                                  color: secondaryColor,
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    color: colorNumber,
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.asset(
+                                    products[0].image,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Container(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  "Sucrerie",
-                                  style: TextStyle(
-                                    // color: secondaryColor,
-                                    color: darkColor,
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    height: screenHeight / 45,
                                   ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 11,
+                                  Container(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      "Coca-Cola",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        // color: secondaryColor,
+                                        color: primaryColor,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Container(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      "Sucrerie",
+                                      style: TextStyle(
+                                        // color: secondaryColor,
+                                        color: darkColor,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 11,
+                                  ),
+                                  Container(
+                                    // alignment: Alignment.topRight,
+                                    child: Text(
+                                      "1500 FCFA",
+                                      style: TextStyle(
+                                        // color: secondaryColor,
+                                        color: primaryColor,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                               Container(
-                                // alignment: Alignment.topRight,
-                                child: Text(
-                                  "1500 FCFA",
-                                  style: TextStyle(
-                                    // color: secondaryColor,
-                                    color: primaryColor,
+                                alignment: Alignment.topRight,
+                                // ),
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.close,
+                                    color: redColor,
+                                    size: 30,
                                   ),
                                 ),
                               ),
                             ],
                           ),
-                          Container(
-                            alignment: Alignment.topRight,
-                            // ),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.close,
-                                color: redColor,
-                                size: 30,
+                        ),
+                        Container(
+                          // color: primaryColor,
+                          // alignment: Alignment.bottomRight,
+                          // width: screenWidth * .5,
+                          // height: screenHeight / 15,
+                          child: Column(
+                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.add_box_sharp,
+                                      color: darkColor,
+                                      size: 30,
+                                    ),
+                                  ),
+                                  Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.add_box_sharp,
+                                      color: darkColor,
+                                      size: 30,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Container(
+                                height: 1,
+                                color: primaryColor,
+                              ),
+                            ],
                           ),
-                          // Container(
-                          //   alignment: Alignment.topRight,
-                          //   // height: 50,
-                          //   child: IconButton(
-                          //     onPressed: () {},
-                          //     icon: Icon(
-                          //       Icons.close,
-                          //       color: redColor,
-                          //       size: 30,
-                          //     ),
-                          //   ),
-                          // ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    // Container(
-                    //   color: primaryColor,
-                    //   width: screenWidth * .5,
-                    //   // height: ,
-                    //   child: Text(
-                    //     '#052023',
-                    //     style: TextStyle(fontWeight: FontWeight.bold),
-                    //   ),
-                    // ),
-                  ],
-                ),
-              )
-            ],
-          ),
+                  );
+                },
+              ),
+            ),
+
+            Container(
+              height: screenHeight / 5,
+              color: secondaryColor,
+              child: Column(
+                children: [],
+              ),
+            )
+          ],
         ),
       ),
     );
