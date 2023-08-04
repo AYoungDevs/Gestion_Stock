@@ -7,6 +7,7 @@ const Color primaryConstratColor = Colors.deepPurple;
 const Color darkColor = Color(0xff000000);
 const Color backgroundColor = Color(0xff434B5D);
 const Color secondaryColor = Colors.white;
+const Color colorNumber = Color(0xffFCC381);
 const Color pageBackgroundColor = Color(0xffF8F9FF);
 const Color canvasColor = Color(0xffFFF4DE);
 const Color textPrimaryColor = Color(0xff042C5C);
@@ -17,7 +18,7 @@ const Color warningColor = Color(0xffF5B403);
 const Color starRateColor = Color(0xffb0d12b);
 
 const Color associative1Color = Color(0xff2c0001);
-const Color associative2Color = Color(0xffdc471c);
+const Color redColor = Color(0xffdc471c);
 const Color associative3Color = Color(0xfff6c046);
 
 const Color facebookColor = Color(0xff3b5998);
