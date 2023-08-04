@@ -118,14 +118,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     ElevatedButton(
-                        onPressed: () {
-                          Get.toNamed(Routes.dashboard);
-                        },
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateColor.resolveWith(
-                              (states) => primaryColor),
-                        ),
-                        child: Text('Se Connecter')),
+                      onPressed: () {
+                        Get.toNamed(Routes.dashboard);
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateColor.resolveWith(
+                            (states) => primaryColor),
+                      ),
+                      child: Text('Se Connecter'),
+                    ),
                   ],
                 )),
               ),
