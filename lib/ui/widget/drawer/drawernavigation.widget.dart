@@ -24,7 +24,7 @@ class DrawerNavigationMenu extends StatelessWidget {
       height: screenHeight / 14,
       width: screenWidth / 5,
       alignment: Alignment.center,
-      color: primaryOpacityColor,
+      // color: primaryOpacityColor,
       child: child,
     );
   }
