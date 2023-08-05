@@ -3,14 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_stock/app/routes.dart';
 import 'package:gestion_stock/features/constants.features.dart';
-import 'package:gestion_stock/ui/models/products/products.models.dart';
 import 'package:gestion_stock/ui/screens/acceuil/acceuil.screen.dart';
 import 'package:gestion_stock/ui/screens/profil/profil.dart';
 import 'package:gestion_stock/ui/styles/colors.style.dart';
-// import 'package:gestion_stock/ui/styles/colors.style.dart';
-import 'package:gestion_stock/ui/widget/cart/cart.widget.dart';
-import 'package:gestion_stock/ui/widget/dashboard/categorie/categorie.widget.dart';
-import 'package:gestion_stock/ui/widget/drawer/drawer.widget.dart';
 import 'package:gestion_stock/ui/widget/drawer/drawernavigation.widget.dart';
 import 'package:get/get.dart';
 // import 'package:gestion_stock/features/constants.features.dart';
