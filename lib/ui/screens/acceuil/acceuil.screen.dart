@@ -54,7 +54,7 @@ class _AcceuilScreenState extends State<AcceuilScreen> {
               ),
               Expanded(
                 child: GridView.count(
-                  crossAxisCount: 4,
+                  crossAxisCount: 5,
                   children: List.generate(20, (index) {
                     return Container(
                       alignment: Alignment.topLeft,

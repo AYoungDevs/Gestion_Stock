@@ -66,11 +66,13 @@ class _CartWidgetState extends State<CartWidget> {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Container(
                           height: screenHeight / 6,
                           // color: primaryColor,
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Container(
                                 height: screenHeight / 8,
@@ -96,6 +98,7 @@ class _CartWidgetState extends State<CartWidget> {
                                     height: screenHeight / 45,
                                   ),
                                   Container(
+                                    // color: secondaryColor,
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       "Coca-Cola",
@@ -110,6 +113,7 @@ class _CartWidgetState extends State<CartWidget> {
                                     height: 5,
                                   ),
                                   Container(
+                                    // color: secondaryColor,
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       "Sucrerie",
@@ -123,6 +127,7 @@ class _CartWidgetState extends State<CartWidget> {
                                     height: 11,
                                   ),
                                   Container(
+                                    // color: secondaryColor,
                                     // alignment: Alignment.topRight,
                                     child: Text(
                                       "1500 FCFA",
@@ -135,6 +140,7 @@ class _CartWidgetState extends State<CartWidget> {
                                 ],
                               ),
                               Container(
+                                // color: secondaryColor,
                                 alignment: Alignment.topRight,
                                 // ),
                                 child: IconButton(
@@ -152,13 +158,13 @@ class _CartWidgetState extends State<CartWidget> {
                         Container(
                           // color: primaryColor,
                           // alignment: Alignment.bottomRight,
-                          // width: screenWidth * .5,
-                          // height: screenHeight / 15,
+                          // width: screenWidth / 20,
+                          // height: screenHeight / 20,
                           child: Column(
-                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   IconButton(
                                     onPressed: () {},
@@ -187,12 +193,12 @@ class _CartWidgetState extends State<CartWidget> {
                               SizedBox(
                                 height: 10,
                               ),
-                              Container(
-                                height: 1,
-                                color: primaryColor,
-                              ),
                             ],
                           ),
+                        ),
+                        Container(
+                          height: 1,
+                          color: primaryColor,
                         ),
                       ],
                     ),
