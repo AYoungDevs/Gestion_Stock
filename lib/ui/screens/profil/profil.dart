@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:gestion_stock/ui/styles/colors.style.dart';
-import 'package:gestion_stock/ui/widget/drawer/drawer.widget.dart';
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({super.key});
@@ -25,20 +24,20 @@ class _ProfilScreenState extends State<ProfilScreen> {
       body: SafeArea(
         child: Row(
           children: [
+            // Expanded(
+            //   flex: 2,
+            //   child: DrawerWidget(),
+            // ),
             Expanded(
-              flex: 2,
-              child: DrawerWidget(),
-            ),
-            Expanded(
-                flex: 13,
+                flex: 10,
                 child: Row(
                   children: [
                     Padding(
                       padding:
                           EdgeInsets.only(left: 20, right: 45, bottom: 150),
                       child: Container(
-                          width: 360,
-                          height: 500,
+                          width: screenWidth * 0.2,
+                          height: screenHeight * 0.5,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
                             color: profilColor1,

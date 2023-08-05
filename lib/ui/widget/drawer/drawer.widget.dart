@@ -21,6 +21,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     Size? screenSize = MediaQuery.of(context).size;
     double screenWidth = screenSize.width;
     double screenHeight = screenSize.height;
+    int selectindex = 0;
 
     return Drawer(
       elevation: 0,
@@ -45,6 +46,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             DrawerNavigationMenu(
               child: InkWell(
                 onTap: () {
+                  selectindex == 1;
+                  setState(() {});
                   Get.toNamed(Routes.dashboard);
                 },
                 child: Text(
