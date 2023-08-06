@@ -5,6 +5,7 @@ import 'package:gestion_stock/ui/models/products/products.models.dart';
 import 'package:gestion_stock/ui/styles/colors.style.dart';
 import 'package:gestion_stock/ui/widget/cart/cart.widget.dart';
 import 'package:gestion_stock/ui/widget/dashboard/categorie/categorie.widget.dart';
+import 'package:gestion_stock/utils/function.utils.dart';
 
 class AcceuilScreen extends StatefulWidget {
   const AcceuilScreen({super.key});
@@ -64,7 +65,22 @@ class _AcceuilScreenState extends State<AcceuilScreen> {
                           vertical: 20,
                         ),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            ShowSimpleAlert(
+                              context,
+                              "Mon Titre",
+                              "Ceci est le message du popup.",
+                              "Fermer",
+                            );
+                            // confirmAlert(
+                            //   context,
+                            //   "Confirmation",
+                            //   "Êtes-vous sûr de vouloir continuer ?",
+                            //   "Confirmer",
+                            //   "Annuler",
+                            //   () {},
+                            // );
+                          },
                           child: Container(
                             height: screenHeight / 3.5,
                             width: 150,
@@ -80,9 +96,17 @@ class _AcceuilScreenState extends State<AcceuilScreen> {
                                     products[0].image,
                                   ),
                                 ),
-                                Text(products[0].title),
+                                Text(
+                                  products[0].title,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                ),
                                 Text(products[0].price,
-                                    style: TextStyle(color: colorNumber)),
+                                    style: TextStyle(
+                                      color: colorNumber,
+                                      fontWeight: FontWeight.bold,
+                                    )),
                               ],
                             ),
                           ),
