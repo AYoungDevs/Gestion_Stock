@@ -40,7 +40,7 @@ class _CartWidgetState extends State<CartWidget> {
                   vertical: 16,
                 ),
                 child: Text(
-                  'Vente récente',
+                  'Votre commande',
                 ),
               ),
             ),
@@ -211,9 +211,42 @@ class _CartWidgetState extends State<CartWidget> {
               height: screenHeight / 5,
               color: secondaryColor,
               child: Column(
-                children: [],
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Nombre"),
+                        Text("5"),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Total"),
+                        Text(
+                          "2500 FCFA",
+                          style: TextStyle(
+                              color: colorNumber, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateColor.resolveWith(
+                          (states) => primaryColor),
+                    ),
+                    child: Text('Imprimer'),
+                  ),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),
