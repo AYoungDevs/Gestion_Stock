@@ -1,7 +1,13 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, unused_local_variable, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:gestion_stock/ui/screens/profil/forgot.password.dart';
+import 'package:gestion_stock/ui/screens/profil/modification.request.dart';
+import 'package:gestion_stock/ui/screens/profil/personnal.information.profil.dart';
 import 'package:gestion_stock/ui/styles/colors.style.dart';
+import 'package:get/get.dart';
+
+import '../../../app/routes.dart';
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({super.key});
@@ -11,6 +17,8 @@ class ProfilScreen extends StatefulWidget {
 }
 
 class _ProfilScreenState extends State<ProfilScreen> {
+  var selectindex = 0;
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -70,39 +78,60 @@ class _ProfilScreenState extends State<ProfilScreen> {
                               Padding(
                                 padding: EdgeInsets.only(top: 10),
                                 child: InkWell(
-                                  onTap: () => {},
+                                  onTap: () {
+                                    setState(() {
+                                      selectindex = 0;
+                                    });
+                                    Get.toNamed(Routes.dashboard);
+                                  },
                                   child: Text(
                                     "Informations personnelles",
                                     style: TextStyle(
                                         color: primaryColor,
                                         fontSize: 20,
-                                        fontWeight: FontWeight.bold),
+                                        fontWeight: selectindex == 0
+                                            ? FontWeight.bold
+                                            : FontWeight.normal),
                                   ),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10),
                                 child: InkWell(
-                                  onTap: () => {},
+                                  onTap: () {
+                                    setState(() {
+                                      selectindex = 1;
+                                    });
+                                    // Get.toNamed(Routes.dashboard);
+                                  },
                                   child: Text(
                                     "Demande de modification",
                                     style: TextStyle(
-                                      color: primaryColor,
-                                      fontSize: 20,
-                                    ),
+                                        color: primaryColor,
+                                        fontSize: 20,
+                                        fontWeight: selectindex == 1
+                                            ? FontWeight.bold
+                                            : FontWeight.normal),
                                   ),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10),
                                 child: InkWell(
-                                  onTap: () => {},
+                                  onTap: () {
+                                    setState(() {
+                                      selectindex = 2;
+                                    });
+                                    // Get.toNamed(Routes.dashboard);
+                                  },
                                   child: Text(
                                     "Mot de passe oublié",
                                     style: TextStyle(
-                                      color: primaryColor,
-                                      fontSize: 20,
-                                    ),
+                                        color: primaryColor,
+                                        fontSize: 20,
+                                        fontWeight: selectindex == 2
+                                            ? FontWeight.bold
+                                            : FontWeight.normal),
                                   ),
                                 ),
                               ),
@@ -111,70 +140,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 38, bottom: 24),
-                      child: Container(
-                        width: screenWidth * 0.58,
-                        height: screenHeight * 1,
-                        color: profilColor12,
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 29, left: 48),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        "Homme",
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 22),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      // Row(
-                                      //   children: _radioValues.map((option) {
-                                      //     return RadioListTile(
-                                      //       title: Text(option["label"]),
-                                      //       value: option["value"],
-                                      //       groupValue: _selectedValue,
-                                      //       onChanged: (value) {
-                                      //         setState(() {
-                                      //           _selectedValue = value;
-                                      //         });
-                                      //       },
-                                      //     );
-                                      //   }).toList(),
-                                      // ),
-                                      Radio(
-                                        value: Radio,
-                                        groupValue: ActionListener,
-                                        onChanged: (value) => '1',
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        "Femme",
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 22),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Radio(
-                                        value: Radio,
-                                        groupValue: ActionListener,
-                                        onChanged: (value) => '1',
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
+                      child: getContentWidget(),
                     ),
                   ],
                 )),
@@ -182,5 +148,19 @@ class _ProfilScreenState extends State<ProfilScreen> {
         ),
       ),
     );
+  }
+
+  getContentWidget() {
+    if (selectindex == 0) {
+      return PersonalInfo();
+    } else if (selectindex == 1) {
+      return ModifRequest();
+    } else if (selectindex == 2) {
+      return ForgotPassword();
+    } else {
+      return Container(
+        child: Text("data"),
+      );
+    }
   }
 }
