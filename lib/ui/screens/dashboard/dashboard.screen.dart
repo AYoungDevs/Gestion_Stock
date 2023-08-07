@@ -1,14 +1,10 @@
-// ignore_for_file: prefer_const_constructors, unused_local_variable, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, non_constant_identifier_names, avoid_unnecessary_containers, unused_element
+// ignore_for_file: prefer_const_constructors, unused_local_variable, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, non_constant_identifier_names, avoid_unnecessary_containers, unused_element, avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:gestion_stock/app/routes.dart';
 import 'package:gestion_stock/features/constants.features.dart';
 import 'package:gestion_stock/ui/screens/acceuil/acceuil.screen.dart';
 import 'package:gestion_stock/ui/screens/profil/profil.dart';
 import 'package:gestion_stock/ui/styles/colors.style.dart';
-import 'package:gestion_stock/ui/widget/drawer/drawernavigation.widget.dart';
-import 'package:gestion_stock/utils/function.utils.dart';
-import 'package:get/get.dart';
 // import 'package:gestion_stock/features/constants.features.dart';
 
 // import '../../styles/colors.style.dart';
@@ -158,14 +154,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                           ),
                         ),
-                        InkWell(
-                          onTap: () {
-                            Get.toNamed(Routes.profil);
-                          },
-                          child: Text(
-                            "Michel Ahoba",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
+                        Text(
+                          "Michel Ahoba",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                       ],
                     ),

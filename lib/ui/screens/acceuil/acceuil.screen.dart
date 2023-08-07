@@ -1,11 +1,10 @@
-// ignore_for_file: unused_local_variable, prefer_const_constructors
+// ignore_for_file: unused_local_variable, prefer_const_constructors, unused_element
 
 import 'package:flutter/material.dart';
 import 'package:gestion_stock/ui/models/products/products.models.dart';
 import 'package:gestion_stock/ui/styles/colors.style.dart';
 import 'package:gestion_stock/ui/widget/cart/cart.widget.dart';
 import 'package:gestion_stock/ui/widget/dashboard/categorie/categorie.widget.dart';
-import 'package:gestion_stock/utils/function.utils.dart';
 
 class AcceuilScreen extends StatefulWidget {
   const AcceuilScreen({super.key});
@@ -56,7 +55,8 @@ class _AcceuilScreenState extends State<AcceuilScreen> {
               Expanded(
                 child: GridView.count(
                   crossAxisCount: 4,
-                  children: List.generate(20, (index) {
+                  children: List.generate(products.length, (index) {
+                    final item = products[index];
                     return Container(
                       alignment: Alignment.topLeft,
                       child: Padding(
@@ -66,20 +66,7 @@ class _AcceuilScreenState extends State<AcceuilScreen> {
                         ),
                         child: InkWell(
                           onTap: () {
-                            ShowSimpleAlert(
-                              context,
-                              "Mon Titre",
-                              "Ceci est le message du popup.",
-                              "Fermer",
-                            );
-                            // confirmAlert(
-                            //   context,
-                            //   "Confirmation",
-                            //   "Êtes-vous sûr de vouloir continuer ?",
-                            //   "Confirmer",
-                            //   "Annuler",
-                            //   () {},
-                            // );
+                            _addProductPanier(item);
                           },
                           child: Container(
                             height: screenHeight / 3.5,
@@ -93,16 +80,21 @@ class _AcceuilScreenState extends State<AcceuilScreen> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Image.asset(
-                                    products[0].image,
+                                    item.image,
                                   ),
                                 ),
-                                Text(
-                                  products[0].title,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w900,
+                                Tooltip(
+                                  message: item.title,
+                                  child: Text(
+                                    item.title,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w900,
+                                    ),
                                   ),
                                 ),
-                                Text(products[0].price,
+                                Text(item.price,
                                     style: TextStyle(
                                       color: colorNumber,
                                       fontWeight: FontWeight.bold,
@@ -125,5 +117,11 @@ class _AcceuilScreenState extends State<AcceuilScreen> {
         ),
       ],
     );
+  }
+
+  void _addProductPanier(Products item) {
+    setState(() {
+      panierProduit.add(item);
+    });
   }
 }

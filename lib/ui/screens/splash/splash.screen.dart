@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable, prefer_const_constructors, avoid_unnecessary_containers
+// ignore_for_file: unused_local_variable, prefer_const_constructors, avoid_unnecessary_containers, unused_field
 
 import 'dart:async';
 
@@ -17,16 +17,27 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  int _dotCount = 1;
+  Timer? _timer;
   @override
   void initState() {
     Timer(
-      Duration(seconds: 3),
+      Duration(seconds: 6),
       () {
         Get.toNamed(Routes.login);
       },
     );
-
     super.initState();
+    _startDotsAnimation();
+  }
+
+  void _startDotsAnimation() async {
+    while (true) {
+      await Future.delayed(Duration(seconds: 1));
+      setState(() {
+        _dotCount = (_dotCount + 1) % 4;
+      });
+    }
   }
 
   @override
@@ -70,11 +81,28 @@ class _SplashScreenState extends State<SplashScreen> {
                 // left: screenWidth / 2,
                 child: Container(
                   alignment: Alignment.center,
-                  child: Text(
-                    'Chargement...',
-                    style: TextStyle(
-                      color: secondaryColor,
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Chargement',
+                        style: TextStyle(
+                          color: secondaryColor,
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(3, (index) {
+                          return Text(
+                            _dotCount >= index + 1 ? '•' : ' ',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: secondaryColor,
+                            ),
+                          );
+                        }),
+                      ),
+                    ],
                   ),
                 ),
               ),
