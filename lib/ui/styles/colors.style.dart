@@ -41,3 +41,7 @@ const Color taxiColor = Color(0xffD13F1C);
 const Color motoColor = Color(0xffD1A01C);
 const Color vtcColor = Color(0xff656565);
 const Color camionColor = Color(0xff76A50D);
+
+//profil colors
+const Color profilColor1 = Color(0xffeaf3f8);
+const Color profilColor12 = Color(0xffd9d9d9);
