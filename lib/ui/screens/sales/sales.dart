@@ -21,10 +21,6 @@ class _SalesState extends State<Sales> {
             child: Row(
       children: [
         Expanded(
-          flex: 2,
-          child: DrawerWidget(),
-        ),
-        Expanded(
           flex: 13,
           child: AcceuilScreenSales(),
         )
