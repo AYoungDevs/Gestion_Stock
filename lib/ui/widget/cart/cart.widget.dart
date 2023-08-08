@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable, prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: unused_local_variable, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_element, sized_box_for_whitespace, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
 import 'package:gestion_stock/ui/models/products/products.models.dart';
@@ -40,7 +40,7 @@ class _CartWidgetState extends State<CartWidget> {
                   vertical: 16,
                 ),
                 child: Text(
-                  'Vente récente',
+                  'Votre commande',
                 ),
               ),
             ),
@@ -61,16 +61,19 @@ class _CartWidgetState extends State<CartWidget> {
             // ),
             Expanded(
               child: ListView.builder(
-                itemCount: 4,
+                itemCount: panierProduit.length,
                 itemBuilder: (BuildContext context, int index) {
+                  final item = panierProduit[index];
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Container(
                           height: screenHeight / 6,
                           // color: primaryColor,
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Container(
                                 height: screenHeight / 8,
@@ -85,24 +88,32 @@ class _CartWidgetState extends State<CartWidget> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Image.asset(
-                                    products[0].image,
+                                    item.image,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
                               Column(
+                                // crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   SizedBox(
                                     height: screenHeight / 45,
                                   ),
                                   Container(
+                                    // height: screenHeight / 45,
+                                    // color: primaryColor,
+                                    width: screenWidth / 20,
                                     alignment: Alignment.topLeft,
-                                    child: Text(
-                                      "Coca-Cola",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        // color: secondaryColor,
-                                        color: primaryColor,
+                                    child: Tooltip(
+                                      message: item.title,
+                                      child: Text(
+                                        item.title,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          // color: secondaryColor,
+                                          color: primaryColor,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -110,9 +121,10 @@ class _CartWidgetState extends State<CartWidget> {
                                     height: 5,
                                   ),
                                   Container(
+                                    // color: secondaryColor,
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      "Sucrerie",
+                                      item.price,
                                       style: TextStyle(
                                         // color: secondaryColor,
                                         color: darkColor,
@@ -123,9 +135,10 @@ class _CartWidgetState extends State<CartWidget> {
                                     height: 11,
                                   ),
                                   Container(
+                                    // color: secondaryColor,
                                     // alignment: Alignment.topRight,
                                     child: Text(
-                                      "1500 FCFA",
+                                      item.price,
                                       style: TextStyle(
                                         // color: secondaryColor,
                                         color: primaryColor,
@@ -135,10 +148,13 @@ class _CartWidgetState extends State<CartWidget> {
                                 ],
                               ),
                               Container(
+                                // color: secondaryColor,
                                 alignment: Alignment.topRight,
                                 // ),
                                 child: IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    _removeProductPanier(item);
+                                  },
                                   icon: Icon(
                                     Icons.close,
                                     color: redColor,
@@ -152,13 +168,13 @@ class _CartWidgetState extends State<CartWidget> {
                         Container(
                           // color: primaryColor,
                           // alignment: Alignment.bottomRight,
-                          // width: screenWidth * .5,
-                          // height: screenHeight / 15,
+                          // width: screenWidth / 20,
+                          // height: screenHeight / 20,
                           child: Column(
-                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   IconButton(
                                     onPressed: () {},
@@ -187,12 +203,12 @@ class _CartWidgetState extends State<CartWidget> {
                               SizedBox(
                                 height: 10,
                               ),
-                              Container(
-                                height: 1,
-                                color: primaryColor,
-                              ),
                             ],
                           ),
+                        ),
+                        Container(
+                          height: 1,
+                          color: primaryColor,
                         ),
                       ],
                     ),
@@ -205,12 +221,51 @@ class _CartWidgetState extends State<CartWidget> {
               height: screenHeight / 5,
               color: secondaryColor,
               child: Column(
-                children: [],
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Nombre"),
+                        Text("5"),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Total"),
+                        Text(
+                          "2500 FCFA",
+                          style: TextStyle(
+                              color: colorNumber, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateColor.resolveWith(
+                          (states) => primaryColor),
+                    ),
+                    child: Text('Imprimer'),
+                  ),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),
     );
+  }
+
+  void _removeProductPanier(Products item) {
+    setState(() {
+      panierProduit.remove(item);
+    });
   }
 }
