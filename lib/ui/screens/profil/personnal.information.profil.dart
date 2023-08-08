@@ -21,9 +21,12 @@ class _PersonalInfoState extends State<PersonalInfo> {
     // Récupérer la hauteur de l'écran
     double screenHeight = screenSize.height;
     return Container(
-      width: screenWidth * 0.58,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50),
+        color: profilColor12,
+      ),
+      width: screenWidth * 0.45,
       height: screenHeight * 1,
-      color: profilColor12,
       child: Column(
         children: [
           // for first line of personnal information profil
@@ -31,7 +34,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 29, left: 48),
+                padding: const EdgeInsets.only(top: 22, left: 50),
                 child: Row(
                   children: [
                     Text(
@@ -85,7 +88,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
           // for second line of personnal information profil
 
           Padding(
-            padding: const EdgeInsets.only(top: 20, left: 48),
+            padding: const EdgeInsets.only(top: 20, left: 50),
             child: Row(
               children: [
                 Column(
@@ -100,7 +103,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                     ),
                     SizedBox(
                       height: 50,
-                      width: 300,
+                      width: 200,
                       child: TextField(
                         enabled: false,
                         decoration: InputDecoration(
@@ -131,7 +134,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                     ),
                     SizedBox(
                       height: 50,
-                      width: 300,
+                      width: 200,
                       child: TextField(
                         enabled: false,
                         decoration: InputDecoration(
@@ -154,7 +157,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
           // for third line of personnal information profil
 
           Padding(
-            padding: const EdgeInsets.only(top: 20, left: 48),
+            padding: const EdgeInsets.only(top: 20, left: 50),
             child: Row(
               children: [
                 Column(
@@ -169,7 +172,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                     ),
                     SizedBox(
                       height: 50,
-                      width: 650,
+                      width: 450,
                       child: TextField(
                         enabled: false,
                         decoration: InputDecoration(
@@ -192,7 +195,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
           // for four line of personnal information profil
 
           Padding(
-            padding: const EdgeInsets.only(top: 20, left: 48),
+            padding: const EdgeInsets.only(top: 20, left: 50),
             child: Row(
               children: [
                 Column(
@@ -207,7 +210,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                     ),
                     SizedBox(
                       height: 50,
-                      width: 650,
+                      width: 450,
                       child: TextField(
                         enabled: false,
                         decoration: InputDecoration(
@@ -227,7 +230,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 20, left: 48),
+            padding: const EdgeInsets.only(top: 20, left: 50),
             child: Row(
               children: [
                 Column(
@@ -242,7 +245,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                     ),
                     SizedBox(
                       height: 50,
-                      width: 300,
+                      width: 200,
                       child: TextField(
                         enabled: false,
                         decoration: InputDecoration(
@@ -273,7 +276,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                     ),
                     SizedBox(
                       height: 50,
-                      width: 300,
+                      width: 200,
                       child: TextField(
                         enabled: false,
                         decoration: InputDecoration(
