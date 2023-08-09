@@ -11,6 +11,9 @@ class PersonalInfo extends StatefulWidget {
 }
 
 class _PersonalInfoState extends State<PersonalInfo> {
+  List<String> options = ['Homme', 'Femme'];
+  String selectedOption = 'Homme';
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -44,29 +47,19 @@ class _PersonalInfoState extends State<PersonalInfo> {
                     SizedBox(
                       width: 10,
                     ),
-                    // Row(
-                    //   children: _radioValues.map((option) {
-                    //     return RadioListTile(
-                    //       title: Text(option["label"]),
-                    //       value: option["value"],
-                    //       groupValue: _selectedValue,
-                    //       onChanged: (value) {
-                    //         setState(() {
-                    //           _selectedValue = value;
-                    //         });
-                    //       },
-                    //     );
-                    //   }).toList(),
-                    // ),
                     Radio(
-                      value: Radio,
-                      groupValue: ActionListener,
-                      onChanged: (value) => '1',
+                      value: 'Homme',
+                      groupValue: selectedOption,
+                      onChanged: null,
+                      // (value) {
+                      //   setState(() {
+                      //     selectedOption = value as String;
+                      //   });
+                      // },
                     ),
                     const SizedBox(
                       width: 10,
                     ),
-
                     Text(
                       "Femme",
                       style: TextStyle(color: darkColor, fontSize: 22),
@@ -75,9 +68,14 @@ class _PersonalInfoState extends State<PersonalInfo> {
                       width: 10,
                     ),
                     Radio(
-                      value: Radio,
-                      groupValue: ActionListener,
-                      onChanged: (value) => '1',
+                      value: 'Femme',
+                      groupValue: selectedOption,
+                      onChanged: null,
+                      // (value) {
+                      //   setState(() {
+                      //     selectedOption = value as String;
+                      //   });
+                      // },
                     ),
                   ],
                 ),
