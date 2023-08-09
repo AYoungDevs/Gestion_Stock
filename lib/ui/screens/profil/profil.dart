@@ -1,13 +1,10 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, unused_local_variable, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:gestion_stock/ui/screens/profil/forgot.password.dart';
+import 'package:gestion_stock/ui/screens/profil/modification.password.dart';
 import 'package:gestion_stock/ui/screens/profil/modification.request.dart';
 import 'package:gestion_stock/ui/screens/profil/personnal.information.profil.dart';
 import 'package:gestion_stock/ui/styles/colors.style.dart';
-import 'package:get/get.dart';
-
-import '../../../app/routes.dart';
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({super.key});
@@ -49,9 +46,9 @@ class _ProfilScreenState extends State<ProfilScreen> {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(
-                          left: 20, right: 25, bottom: 150, top: 24),
+                          left: 20, right: 80, bottom: 150, top: 24),
                       child: Container(
-                          width: screenWidth / 4,
+                          width: screenWidth / 3.5,
                           height: screenHeight * 0.7,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
@@ -82,7 +79,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                     setState(() {
                                       selectindex = 0;
                                     });
-                                    Get.toNamed(Routes.dashboard);
+                                    // Get.toNamed(Routes.dashboard);
                                   },
                                   child: Text(
                                     "Informations personnelles",
@@ -95,26 +92,26 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                   ),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      selectindex = 1;
-                                    });
-                                    // Get.toNamed(Routes.dashboard);
-                                  },
-                                  child: Text(
-                                    "Demande de modification",
-                                    style: TextStyle(
-                                        color: primaryColor,
-                                        fontSize: 20,
-                                        fontWeight: selectindex == 1
-                                            ? FontWeight.bold
-                                            : FontWeight.normal),
-                                  ),
-                                ),
-                              ),
+                              // Padding(
+                              //   padding: const EdgeInsets.only(top: 10),
+                              //   child: InkWell(
+                              //     onTap: () {
+                              //       setState(() {
+                              //         selectindex = 1;
+                              //       });
+                              //       // Get.toNamed(Routes.dashboard);
+                              //     },
+                              //     child: Text(
+                              //       "Demande de modification",
+                              //       style: TextStyle(
+                              //           color: primaryColor,
+                              //           fontSize: 20,
+                              //           fontWeight: selectindex == 1
+                              //               ? FontWeight.bold
+                              //               : FontWeight.normal),
+                              //     ),
+                              //   ),
+                              // ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10),
                                 child: InkWell(
@@ -125,7 +122,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                     // Get.toNamed(Routes.dashboard);
                                   },
                                   child: Text(
-                                    "Mot de passe oublié",
+                                    "Modification du mot de passe oublié",
                                     style: TextStyle(
                                         color: primaryColor,
                                         fontSize: 20,
@@ -141,7 +138,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                     Padding(
                       padding: EdgeInsets.only(top: 38, bottom: 24),
                       child: getContentWidget(),
-                    ),
+                    )
                   ],
                 )),
           ],
@@ -156,7 +153,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
     } else if (selectindex == 1) {
       return ModifRequest();
     } else if (selectindex == 2) {
-      return ForgotPassword();
+      return ModifPassword();
     } else {
       return Container(
         child: Text("data"),

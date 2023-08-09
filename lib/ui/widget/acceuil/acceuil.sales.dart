@@ -1,19 +1,9 @@
-// ignore_for_file: unused_local_variable, prefer_const_constructors
+// ignore_for_file: unused_local_variable, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:gestion_stock/ui/models/products/products.models.dart';
 import 'package:gestion_stock/ui/styles/colors.style.dart';
-import 'package:gestion_stock/ui/styles/colors.style.dart';
-
 import 'package:gestion_stock/ui/widget/cart/cart.widget.dart';
 import 'package:gestion_stock/ui/widget/dashboard/categorie/categorie.widget.dart';
-import 'package:gestion_stock/ui/widget/acceuil/acceuil.sales.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
-import '../../../app/routes.dart';
-import '../../styles/colors.style.dart';
-import 'package:gestion_stock/ui/models/products/products.models.dart';
 
 class AcceuilScreenSales extends StatefulWidget {
   const AcceuilScreenSales({super.key});
@@ -145,10 +135,6 @@ class AcceuilScreenSalesState extends State<AcceuilScreenSales> {
               )),
             ],
           ),
-        ),
-        Expanded(
-          flex: 3,
-          child: CartWidget(),
         ),
       ],
     );

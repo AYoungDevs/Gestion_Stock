@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable, prefer_const_constructors, unused_element
+// ignore_for_file: unused_local_variable, prefer_const_constructors, unused_element, unused_field, prefer_final_fields
 
 import 'package:flutter/material.dart';
 import 'package:gestion_stock/ui/models/products/products.models.dart';
@@ -14,6 +14,9 @@ class AcceuilScreen extends StatefulWidget {
 }
 
 class _AcceuilScreenState extends State<AcceuilScreen> {
+  TextEditingController _searchController = TextEditingController();
+  List<Products> filteredProducts = [...products];
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -32,6 +35,14 @@ class _AcceuilScreenState extends State<AcceuilScreen> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 40),
                 child: TextField(
+                  controller: _searchController,
+                  onChanged: (text) {
+                    _filterProducts(text);
+                  },
+                  onSubmitted: (text) {
+                    _searchController.clear();
+                    _filterProducts('');
+                  },
                   decoration: InputDecoration(
                     labelText: "Recherche",
                     labelStyle: TextStyle(color: primaryColor),
@@ -55,8 +66,8 @@ class _AcceuilScreenState extends State<AcceuilScreen> {
               Expanded(
                 child: GridView.count(
                   crossAxisCount: 4,
-                  children: List.generate(products.length, (index) {
-                    final item = products[index];
+                  children: List.generate(filteredProducts.length, (index) {
+                    final item = filteredProducts[index];
                     return Container(
                       alignment: Alignment.topLeft,
                       child: Padding(
@@ -94,7 +105,7 @@ class _AcceuilScreenState extends State<AcceuilScreen> {
                                     ),
                                   ),
                                 ),
-                                Text(item.price,
+                                Text("${item.price}" "${item.devise}",
                                     style: TextStyle(
                                       color: colorNumber,
                                       fontWeight: FontWeight.bold,
@@ -119,9 +130,45 @@ class _AcceuilScreenState extends State<AcceuilScreen> {
     );
   }
 
-  void _addProductPanier(Products item) {
-    setState(() {
-      panierProduit.add(item);
-    });
+  // void _addProductPanier(Products item) {
+  //   setState(() {
+  //     panierProduit.add(item);
+  //   });
+  // }
+
+  void _addProductPanier(Products newItem) {
+    bool found = false;
+
+    for (var item in panierProduit) {
+      if (item.isEqual(newItem)) {
+        setState(() {
+          item.nombreElement++;
+        });
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) {
+      setState(() {
+        panierProduit.add(newItem);
+        newItem.nombreElement++;
+      });
+    }
+  }
+
+  void _filterProducts(String searchText) {
+    if (searchText.isEmpty) {
+      setState(() {
+        filteredProducts = products;
+      });
+    } else {
+      setState(() {
+        filteredProducts = products
+            .where((product) =>
+                product.title.toLowerCase().contains(searchText.toLowerCase()))
+            .toList();
+      });
+    }
   }
 }

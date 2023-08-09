@@ -1,8 +1,10 @@
-// ignore_for_file: unused_local_variable, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_element, sized_box_for_whitespace, avoid_unnecessary_containers
+// ignore_for_file: unused_local_variable, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_element, sized_box_for_whitespace, avoid_unnecessary_containers, no_leading_underscores_for_local_identifiers, unnecessary_brace_in_string_interps
 
 import 'package:flutter/material.dart';
 import 'package:gestion_stock/ui/models/products/products.models.dart';
 import 'package:gestion_stock/ui/styles/colors.style.dart';
+import 'package:gestion_stock/utils/function.utils.dart';
+import 'package:art_sweetalert/art_sweetalert.dart';
 
 class CartWidget extends StatefulWidget {
   const CartWidget({super.key});
@@ -12,8 +14,12 @@ class CartWidget extends StatefulWidget {
 }
 
 class _CartWidgetState extends State<CartWidget> {
+  String randomReference = generateRandomReference();
+
+  double totalAmount = 0;
   @override
   Widget build(BuildContext context) {
+    _calculateTotal();
     Size screenSize = MediaQuery.of(context).size;
 
     // Récupérer la largeur de l'écran
@@ -51,8 +57,8 @@ class _CartWidgetState extends State<CartWidget> {
                   horizontal: 15,
                 ),
                 child: Text(
-                  '#052023',
-                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                  '#${randomReference}',
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -124,7 +130,7 @@ class _CartWidgetState extends State<CartWidget> {
                                     // color: secondaryColor,
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      item.price,
+                                      item.categorie,
                                       style: TextStyle(
                                         // color: secondaryColor,
                                         color: darkColor,
@@ -138,7 +144,7 @@ class _CartWidgetState extends State<CartWidget> {
                                     // color: secondaryColor,
                                     // alignment: Alignment.topRight,
                                     child: Text(
-                                      item.price,
+                                      '${item.price}',
                                       style: TextStyle(
                                         // color: secondaryColor,
                                         color: primaryColor,
@@ -177,7 +183,9 @@ class _CartWidgetState extends State<CartWidget> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      _addNombreProduct(item);
+                                    },
                                     icon: Icon(
                                       Icons.add_box_sharp,
                                       color: darkColor,
@@ -185,15 +193,17 @@ class _CartWidgetState extends State<CartWidget> {
                                     ),
                                   ),
                                   Text(
-                                    '2',
+                                    '${item.nombreElement}',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      _removenombreProduct(item);
+                                    },
                                     icon: Icon(
-                                      Icons.add_box_sharp,
+                                      Icons.remove_circle,
                                       color: darkColor,
                                       size: 30,
                                     ),
@@ -223,23 +233,23 @@ class _CartWidgetState extends State<CartWidget> {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(12.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Nombre"),
-                        Text("5"),
+                        Text("${panierProduit.length}"),
                       ],
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(12.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Total"),
                         Text(
-                          "2500 FCFA",
+                          "${totalAmount.toStringAsFixed(2)} FCFA",
                           style: TextStyle(
                               color: colorNumber, fontWeight: FontWeight.bold),
                         ),
@@ -247,12 +257,21 @@ class _CartWidgetState extends State<CartWidget> {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (panierProduit.isEmpty || totalAmount <= 0) {
+                        return showSnackbar(
+                          title: 'Erreur',
+                          message: 'Le panier ne peut pas être vide !🤷‍♂️',
+                          backgroundcolor: pageBackgroundColor,
+                        );
+                      }
+                      _showAlert();
+                    },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateColor.resolveWith(
                           (states) => primaryColor),
                     ),
-                    child: Text('Imprimer'),
+                    child: Text('Valider commande'),
                   ),
                 ],
               ),
@@ -265,7 +284,56 @@ class _CartWidgetState extends State<CartWidget> {
 
   void _removeProductPanier(Products item) {
     setState(() {
+      item.nombreElement = 0;
       panierProduit.remove(item);
+    });
+  }
+
+  void _addNombreProduct(Products item) {
+    setState(() {
+      item.nombreElement++;
+      _calculateTotal();
+    });
+  }
+
+  void _removenombreProduct(Products item) {
+    setState(() {
+      if (item.nombreElement > 1) {
+        item.nombreElement--;
+        _calculateTotal();
+      } else {
+        showSnackbar(
+          title: 'Erreur',
+          message:
+              'Le panier ne peut pas comporter de produit avec pour nombre 0',
+          backgroundcolor: pageBackgroundColor,
+        );
+      }
+    });
+  }
+
+  void _calculateTotal() {
+    totalAmount = 0;
+    for (var item in panierProduit) {
+      totalAmount += item.price * item.nombreElement;
+    }
+  }
+
+  void _showAlert() {
+    ArtDialogArgs dialogArgs = ArtDialogArgs(
+      type: ArtSweetAlertType.success,
+      title: "Vente N°${randomReference}",
+      text: "Commande validée avec succès 😇",
+    );
+    showCustomSweetAlert(context, dialogArgs);
+    setState(() {
+      for (var item in panierProduit) {
+        item.nombreElement = 0;
+      }
+      panierProduit = [];
+      panierProduit.removeWhere((item) => item.nombreElement > 0);
+
+      randomReference = generateRandomReference();
     });
   }
 }
