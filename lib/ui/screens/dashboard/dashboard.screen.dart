@@ -188,7 +188,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       return AcceuilScreen();
     } else if (selectindex == 3) {
       return ProfilScreen();
-    } else {
+    } else if (selectindex == 1) {
       return Sales();
     }
   }

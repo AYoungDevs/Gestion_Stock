@@ -3,8 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_stock/ui/models/products/products.models.dart';
 import 'package:gestion_stock/ui/styles/colors.style.dart';
+import 'package:gestion_stock/ui/styles/colors.style.dart';
+
 import 'package:gestion_stock/ui/widget/cart/cart.widget.dart';
 import 'package:gestion_stock/ui/widget/dashboard/categorie/categorie.widget.dart';
+import 'package:gestion_stock/ui/widget/acceuil/acceuil.sales.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../../../app/routes.dart';
+import '../../styles/colors.style.dart';
+import 'package:gestion_stock/ui/models/products/products.models.dart';
 
 class AcceuilScreenSales extends StatefulWidget {
   const AcceuilScreenSales({super.key});
@@ -64,7 +73,9 @@ class AcceuilScreenSalesState extends State<AcceuilScreenSales> {
                     child: Card(
                         elevation: 1,
                         child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              __ShowSalesDetailsPopup(context);
+                            },
                             child: Container(
                               height: 80,
                               padding: EdgeInsets.all(8),
@@ -141,5 +152,75 @@ class AcceuilScreenSalesState extends State<AcceuilScreenSales> {
         ),
       ],
     );
+  }
+
+  void __ShowSalesDetailsPopup(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Details des ventes "),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(right: 20),
+                      child: Icon(Icons.check_circle,
+                          color: addCoinColor, size: 50),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: Text(
+                            "Vente : #948585",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Text('QTE :'),
+                            SizedBox(width: 30),
+                            Text(
+                              "5",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: 430),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: Text('Date:     11/08/2023    10:00'),
+                        ),
+                        Row(
+                          children: [
+                            Text("Total:"),
+                            SizedBox(width: 20),
+                            Text(
+                              "2500 FCFA",
+                              style: TextStyle(
+                                  color: Colors.orange,
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ],
+            ),
+          );
+        });
   }
 }
