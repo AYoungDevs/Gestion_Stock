@@ -1,5 +1,8 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'dart:math';
+
+import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:flutter/material.dart';
 import 'package:gestion_stock/ui/styles/colors.style.dart';
 import 'package:get/get.dart';
@@ -102,4 +105,38 @@ Future<dynamic> confirmAlert(
       );
     },
   );
+}
+
+void showSnackbar(
+    {required String title,
+    required String message,
+    required Color backgroundcolor}) {
+  Get.snackbar(
+    title,
+    message,
+    colorText: primaryColor,
+    backgroundColor: dangerColor,
+    snackPosition: SnackPosition.TOP,
+  );
+}
+
+void showCustomSweetAlert(BuildContext context, ArtDialogArgs dialogArgs) {
+  ArtSweetAlert.show(
+    context: context,
+    artDialogArgs: dialogArgs,
+  );
+}
+
+String generateRandomReference() {
+  // Obtenir la date du jour
+  DateTime now = DateTime.now();
+
+  // Générer trois chiffres aléatoires
+  int randomDigits = Random().nextInt(900) + 100;
+
+  // Créer la référence en combinant la date et les chiffres aléatoires
+  String reference =
+      '${now.year}${now.month.toString().padLeft(2, '0')}${now.day.toString().padLeft(2, '0')}_$randomDigits';
+
+  return reference;
 }

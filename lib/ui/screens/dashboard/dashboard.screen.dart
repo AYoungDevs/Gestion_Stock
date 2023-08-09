@@ -5,10 +5,6 @@ import 'package:gestion_stock/features/constants.features.dart';
 import 'package:gestion_stock/ui/screens/acceuil/acceuil.screen.dart';
 import 'package:gestion_stock/ui/screens/profil/profil.dart';
 import 'package:gestion_stock/ui/styles/colors.style.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
-import '../../../app/routes.dart';
 import '../sales/sales.dart';
 // import 'package:gestion_stock/features/constants.features.dart';
 
@@ -188,8 +184,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
       return AcceuilScreen();
     } else if (selectindex == 3) {
       return ProfilScreen();
-    } else {
+    } else if (selectindex == 1) {
       return Sales();
+    } else {
+      return Container(
+        child: Text("data"),
+      );
     }
   }
 }

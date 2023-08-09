@@ -1,9 +1,6 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../../app/routes.dart';
 import '../../styles/colors.style.dart';
 import 'package:animator/animator.dart';
 
@@ -206,7 +203,7 @@ class _ModifPasswordState extends State<ModifPassword> {
                 builder: (context, animatorState, child) {
                   return ElevatedButton(
                     onPressed: () {
-                      Get.toNamed(Routes.profil);
+                      // Get.toNamed(Routes.profil);
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateColor.resolveWith(

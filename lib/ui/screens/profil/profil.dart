@@ -5,9 +5,6 @@ import 'package:gestion_stock/ui/screens/profil/modification.password.dart';
 import 'package:gestion_stock/ui/screens/profil/modification.request.dart';
 import 'package:gestion_stock/ui/screens/profil/personnal.information.profil.dart';
 import 'package:gestion_stock/ui/styles/colors.style.dart';
-import 'package:get/get.dart';
-
-import '../../../app/routes.dart';
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({super.key});
@@ -82,7 +79,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                     setState(() {
                                       selectindex = 0;
                                     });
-                                    Get.toNamed(Routes.dashboard);
+                                    // Get.toNamed(Routes.dashboard);
                                   },
                                   child: Text(
                                     "Informations personnelles",
