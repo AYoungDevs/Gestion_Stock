@@ -142,11 +142,12 @@ class AcceuilScreenSalesState extends State<AcceuilScreenSales> {
 
   void __ShowSalesDetailsPopup(BuildContext context) {
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Details des ventes "),
-            content: Column(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Details #9485885"),
+          content: SingleChildScrollView(
+            child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -194,19 +195,78 @@ class AcceuilScreenSalesState extends State<AcceuilScreenSales> {
                             Text(
                               "2500 FCFA",
                               style: TextStyle(
-                                  color: Colors.orange,
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.bold),
-                            )
+                                color: Colors.orange,
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ],
-                        )
+                        ),
                       ],
-                    )
+                    ),
                   ],
+                ),
+                SizedBox(height: 20),
+                Column(
+                  children: List.generate(
+                    2,
+                    (index) => Column(
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 2, color: Colors.orange),
+                                  ),
+                                  child: Container(
+                                    padding: EdgeInsets.all(10),
+                                    width: 70, // Largeur souhaitée
+                                    height: 70, // Hauteur souhaitée
+                                    child: Image.asset(
+                                        "assets/images/coca_cola_33cl.jpg"),
+                                  ),
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      "Coca-Cola",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text("Sucrerie",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text("5x1500 FCFA",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.orange)),
+                                    )
+                                  ],
+                                ),
+                                SizedBox(width: 500),
+                                Text("2500FCFA",
+                                    style: TextStyle(color: Colors.orange))
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 10), // Espace entre les images
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }
