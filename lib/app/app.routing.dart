@@ -5,6 +5,7 @@ import 'package:gestion_stock/ui/screens/profil/profil.dart';
 import 'package:gestion_stock/ui/screens/sales/sales.dart';
 import 'package:get/get.dart';
 
+import '../ui/screens/Report/report.dart';
 import '../ui/screens/splash/splash.screen.dart';
 
 class AppRouting {
@@ -36,6 +37,12 @@ class AppRouting {
     GetPage(
       name: Routes.sales,
       page: () => const Sales(),
+      transition: Transition.fade,
+      transitionDuration: const Duration(milliseconds: 350),
+    ),
+    GetPage(
+      name: Routes.report,
+      page: () => const Report(),
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 350),
     ),
