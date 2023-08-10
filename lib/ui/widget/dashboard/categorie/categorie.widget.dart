@@ -16,7 +16,24 @@ class _CategorieDashboardState extends State<CategorieDashboard> {
     "Bières",
     "Sucreries",
     "Alcools",
-    "Liqueurs"
+    "Liqueurs",
+    "Liqueurs",
+    "Liqueurs",
+    "Liqueurs",
+    "Liqueurs",
+    "Liqueurs",
+    "Liqueurs",
+    "Liqueurs",
+    "Liqueurs",
+    "Liqueurs",
+    "Liqueurs",
+    "Liqueurs",
+    "Liqueurs",
+    "Liqueurs",
+    "Liqueurs",
+    "Liqueurs",
+    "Liqueurs",
+    "Liqueurs",
   ];
   int selectedIndex = 0;
   @override

@@ -1,8 +1,13 @@
-// ignore_for_file: unused_local_variable, prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: unused_local_variable, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_element, sized_box_for_whitespace, avoid_unnecessary_containers, no_leading_underscores_for_local_identifiers, unnecessary_brace_in_string_interps
+
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:gestion_stock/ui/models/products/products.models.dart';
+import 'package:gestion_stock/ui/models/ventes/ventes.models.dart';
 import 'package:gestion_stock/ui/styles/colors.style.dart';
+import 'package:gestion_stock/utils/function.utils.dart';
+import 'package:art_sweetalert/art_sweetalert.dart';
 
 class CartWidget extends StatefulWidget {
   const CartWidget({super.key});
@@ -12,9 +17,15 @@ class CartWidget extends StatefulWidget {
 }
 
 class _CartWidgetState extends State<CartWidget> {
+  String randomReference = generateRandomReference();
+  int totalPanier = 0;
+  double totalAmount = 0;
+  late List produitPanier;
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
+    _getTotalNumberOfProducts();
+    _calculateTotal();
+    var screenSize = MediaQuery.of(context).size;
 
     // Récupérer la largeur de l'écran
     double screenWidth = screenSize.width;
@@ -40,7 +51,7 @@ class _CartWidgetState extends State<CartWidget> {
                   vertical: 16,
                 ),
                 child: Text(
-                  'Vente récente',
+                  'Votre commande',
                 ),
               ),
             ),
@@ -51,8 +62,8 @@ class _CartWidgetState extends State<CartWidget> {
                   horizontal: 15,
                 ),
                 child: Text(
-                  '#052023',
-                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                  '#${randomReference}',
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -61,16 +72,19 @@ class _CartWidgetState extends State<CartWidget> {
             // ),
             Expanded(
               child: ListView.builder(
-                itemCount: 4,
+                itemCount: panierProduit.length,
                 itemBuilder: (BuildContext context, int index) {
+                  final item = panierProduit[index];
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Container(
                           height: screenHeight / 6,
                           // color: primaryColor,
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Container(
                                 height: screenHeight / 8,
@@ -85,24 +99,32 @@ class _CartWidgetState extends State<CartWidget> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Image.asset(
-                                    products[0].image,
+                                    item.image,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
                               Column(
+                                // crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   SizedBox(
                                     height: screenHeight / 45,
                                   ),
                                   Container(
+                                    // height: screenHeight / 45,
+                                    // color: primaryColor,
+                                    width: screenWidth / 20,
                                     alignment: Alignment.topLeft,
-                                    child: Text(
-                                      "Coca-Cola",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        // color: secondaryColor,
-                                        color: primaryColor,
+                                    child: Tooltip(
+                                      message: item.title,
+                                      child: Text(
+                                        item.title,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          // color: secondaryColor,
+                                          color: primaryColor,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -110,9 +132,10 @@ class _CartWidgetState extends State<CartWidget> {
                                     height: 5,
                                   ),
                                   Container(
+                                    // color: secondaryColor,
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      "Sucrerie",
+                                      item.categorie,
                                       style: TextStyle(
                                         // color: secondaryColor,
                                         color: darkColor,
@@ -123,9 +146,10 @@ class _CartWidgetState extends State<CartWidget> {
                                     height: 11,
                                   ),
                                   Container(
+                                    // color: secondaryColor,
                                     // alignment: Alignment.topRight,
                                     child: Text(
-                                      "1500 FCFA",
+                                      '${item.price}',
                                       style: TextStyle(
                                         // color: secondaryColor,
                                         color: primaryColor,
@@ -135,10 +159,13 @@ class _CartWidgetState extends State<CartWidget> {
                                 ],
                               ),
                               Container(
+                                // color: secondaryColor,
                                 alignment: Alignment.topRight,
                                 // ),
                                 child: IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    _removeProductPanier(item);
+                                  },
                                   icon: Icon(
                                     Icons.close,
                                     color: redColor,
@@ -152,30 +179,34 @@ class _CartWidgetState extends State<CartWidget> {
                         Container(
                           // color: primaryColor,
                           // alignment: Alignment.bottomRight,
-                          // width: screenWidth * .5,
-                          // height: screenHeight / 15,
+                          // width: screenWidth / 20,
+                          // height: screenHeight / 20,
                           child: Column(
-                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      _removenombreProduct(item);
+                                    },
                                     icon: Icon(
-                                      Icons.add_box_sharp,
+                                      Icons.remove_circle,
                                       color: darkColor,
                                       size: 30,
                                     ),
                                   ),
                                   Text(
-                                    '2',
+                                    '${item.nombreElement}',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      _addNombreProduct(item);
+                                    },
                                     icon: Icon(
                                       Icons.add_box_sharp,
                                       color: darkColor,
@@ -187,12 +218,12 @@ class _CartWidgetState extends State<CartWidget> {
                               SizedBox(
                                 height: 10,
                               ),
-                              Container(
-                                height: 1,
-                                color: primaryColor,
-                              ),
                             ],
                           ),
+                        ),
+                        Container(
+                          height: 1,
+                          color: primaryColor,
                         ),
                       ],
                     ),
@@ -205,12 +236,142 @@ class _CartWidgetState extends State<CartWidget> {
               height: screenHeight / 5,
               color: secondaryColor,
               child: Column(
-                children: [],
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Nombre"),
+                        Text("${totalPanier}"),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Total"),
+                        Text(
+                          "${totalAmount.toStringAsFixed(2)} FCFA",
+                          style: TextStyle(
+                              color: colorNumber, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (panierProduit.isEmpty || totalAmount <= 0) {
+                        return showSnackbar(
+                          title: 'Erreur',
+                          message: 'Le panier ne peut pas être vide !🤷‍♂️',
+                          backgroundcolor: pageBackgroundColor,
+                        );
+                      }
+                      _ValideCommandeshowAlert();
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateColor.resolveWith(
+                          (states) => primaryColor),
+                    ),
+                    child: Text('Valider commande'),
+                  ),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),
     );
+  }
+
+  void _removeProductPanier(Products item) {
+    setState(() {
+      item.nombreElement = 0;
+      panierProduit.remove(item);
+    });
+  }
+
+  void _addNombreProduct(Products item) {
+    setState(() {
+      item.nombreElement++;
+      _calculateTotal();
+    });
+  }
+
+  void _removenombreProduct(Products item) {
+    setState(() {
+      if (item.nombreElement > 1) {
+        item.nombreElement--;
+        _calculateTotal();
+      } else {
+        showSnackbar(
+          title: 'Erreur',
+          message:
+              'Le panier ne peut pas comporter de produit avec pour nombre 0',
+          backgroundcolor: pageBackgroundColor,
+        );
+      }
+    });
+  }
+
+  void _calculateTotal() {
+    totalAmount = 0;
+    for (var item in panierProduit) {
+      totalAmount += item.price * item.nombreElement;
+    }
+  }
+
+  void _ValideCommandeshowAlert() {
+    ArtDialogArgs dialogArgs = ArtDialogArgs(
+      type: ArtSweetAlertType.success,
+      title: "Vente N°${randomReference}",
+      text: "Commande validée avec succès 😇",
+    );
+    showCustomSweetAlert(context, dialogArgs);
+
+    setState(() {
+      produitPanier = [...panierProduit];
+      _AddListeVente(randomReference, totalAmount, totalPanier);
+
+      for (var item in panierProduit) {
+        item.nombreElement = 0;
+      }
+      panierProduit = [];
+      panierProduit.removeWhere((item) => item.nombreElement > 0);
+
+      randomReference = generateRandomReference();
+    });
+  }
+
+  _getTotalNumberOfProducts() {
+    totalPanier = panierProduit.fold(0, (int sum, Products item) {
+      return sum + item.nombreElement;
+    });
+  }
+}
+
+void _AddListeVente(
+    String randrandomReference, double totalAmount, int totalPanier) {
+  Vente vente = Vente(
+    idvente: randrandomReference,
+    datevente: DateTime.now(),
+    prixvente: totalAmount,
+    listeproduit: panierProduit,
+    quantiteProduit: totalPanier,
+  );
+  listeVente.add(vente);
+  for (var vente in listeVente) {
+    print('ID Vente: ${vente.idvente}');
+    print('Date Vente: ${vente.datevente}');
+    print('Prix Vente: ${vente.prixvente}');
+    print('Liste Produit:');
+    for (var produit in vente.listeproduit) {
+      print('- Produit: ${produit.title}');
+      print('  Prix: ${produit.price}');
+      print('Nombreelement ${produit.nombreElement}');
+    }
   }
 }
