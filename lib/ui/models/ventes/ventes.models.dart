@@ -5,12 +5,14 @@ class Vente {
   DateTime datevente;
   List<Products> listeproduit;
   double prixvente;
+  int quantiteProduit;
 
   Vente({
     required this.idvente,
     required this.datevente,
     required this.listeproduit,
     required this.prixvente,
+    required this.quantiteProduit,
   });
 }
 

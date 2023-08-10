@@ -18,10 +18,12 @@ class CartWidget extends StatefulWidget {
 
 class _CartWidgetState extends State<CartWidget> {
   String randomReference = generateRandomReference();
-
+  int totalPanier = 0;
   double totalAmount = 0;
+  late List produitPanier;
   @override
   Widget build(BuildContext context) {
+    _getTotalNumberOfProducts();
     _calculateTotal();
     var screenSize = MediaQuery.of(context).size;
 
@@ -241,7 +243,7 @@ class _CartWidgetState extends State<CartWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Nombre"),
-                        Text("${panierProduit.length}"),
+                        Text("${totalPanier}"),
                       ],
                     ),
                   ),
@@ -329,9 +331,11 @@ class _CartWidgetState extends State<CartWidget> {
       text: "Commande validée avec succès 😇",
     );
     showCustomSweetAlert(context, dialogArgs);
-    _AddListeVente(randomReference, totalAmount);
 
     setState(() {
+      produitPanier = [...panierProduit];
+      _AddListeVente(randomReference, totalAmount, totalPanier);
+
       for (var item in panierProduit) {
         item.nombreElement = 0;
       }
@@ -341,14 +345,22 @@ class _CartWidgetState extends State<CartWidget> {
       randomReference = generateRandomReference();
     });
   }
+
+  _getTotalNumberOfProducts() {
+    totalPanier = panierProduit.fold(0, (int sum, Products item) {
+      return sum + item.nombreElement;
+    });
+  }
 }
 
-void _AddListeVente(String randrandomReference, double totalAmount) {
+void _AddListeVente(
+    String randrandomReference, double totalAmount, int totalPanier) {
   Vente vente = Vente(
     idvente: randrandomReference,
     datevente: DateTime.now(),
     prixvente: totalAmount,
     listeproduit: panierProduit,
+    quantiteProduit: totalPanier,
   );
   listeVente.add(vente);
   for (var vente in listeVente) {

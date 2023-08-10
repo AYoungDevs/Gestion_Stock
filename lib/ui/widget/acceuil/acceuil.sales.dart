@@ -140,7 +140,7 @@ class AcceuilScreenSalesState extends State<AcceuilScreenSales> {
                 children: List.generate(listeVente.length, (index) {
                   final item = listeVente[index];
                   String formattedDate =
-                      DateFormat('dd MMMM yyyy').format(item.datevente);
+                      DateFormat("dd/MM/yyyy").format(item.datevente);
 
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -177,7 +177,7 @@ class AcceuilScreenSalesState extends State<AcceuilScreenSales> {
                                           Text('QTE :'),
                                           SizedBox(width: 30),
                                           Text(
-                                            " ${item.listeproduit.length}",
+                                            " ${item.quantiteProduit}",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           )
@@ -226,6 +226,7 @@ class AcceuilScreenSalesState extends State<AcceuilScreenSales> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
+        String formattedDate = DateFormat("dd/MM/yyyy").format(item.datevente);
         return AlertDialog(
           title: Text("Details #${item.idvente}"),
           content: SingleChildScrollView(
@@ -255,7 +256,7 @@ class AcceuilScreenSalesState extends State<AcceuilScreenSales> {
                             Text('QTE :'),
                             SizedBox(width: 30),
                             Text(
-                              "${item.listeproduit.length}",
+                              "${item.quantiteProduit}",
                               style: TextStyle(fontWeight: FontWeight.bold),
                             )
                           ],
@@ -268,7 +269,7 @@ class AcceuilScreenSalesState extends State<AcceuilScreenSales> {
                       children: [
                         Padding(
                           padding: EdgeInsets.only(bottom: 20),
-                          child: Text('Date :${item.datevente}'),
+                          child: Text('Date :$formattedDate'),
                         ),
                         Row(
                           children: [
@@ -294,6 +295,10 @@ class AcceuilScreenSalesState extends State<AcceuilScreenSales> {
                     item.listeproduit.length,
                     (index) {
                       final produit = item.listeproduit[index];
+                      print('- Produit: ${produit.title}');
+                      print('  Prix: ${produit.price}');
+                      print('Nombreelement ${produit.nombreElement}');
+
                       return Column(
                         children: [
                           Column(
