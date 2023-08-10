@@ -1,7 +1,10 @@
 // ignore_for_file: unused_local_variable, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_element, sized_box_for_whitespace, avoid_unnecessary_containers, no_leading_underscores_for_local_identifiers, unnecessary_brace_in_string_interps
 
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:gestion_stock/ui/models/products/products.models.dart';
+import 'package:gestion_stock/ui/models/ventes/ventes.models.dart';
 import 'package:gestion_stock/ui/styles/colors.style.dart';
 import 'package:gestion_stock/utils/function.utils.dart';
 import 'package:art_sweetalert/art_sweetalert.dart';
@@ -20,7 +23,7 @@ class _CartWidgetState extends State<CartWidget> {
   @override
   Widget build(BuildContext context) {
     _calculateTotal();
-    Size screenSize = MediaQuery.of(context).size;
+    var screenSize = MediaQuery.of(context).size;
 
     // Récupérer la largeur de l'écran
     double screenWidth = screenSize.width;
@@ -184,10 +187,10 @@ class _CartWidgetState extends State<CartWidget> {
                                 children: [
                                   IconButton(
                                     onPressed: () {
-                                      _addNombreProduct(item);
+                                      _removenombreProduct(item);
                                     },
                                     icon: Icon(
-                                      Icons.add_box_sharp,
+                                      Icons.remove_circle,
                                       color: darkColor,
                                       size: 30,
                                     ),
@@ -200,10 +203,10 @@ class _CartWidgetState extends State<CartWidget> {
                                   ),
                                   IconButton(
                                     onPressed: () {
-                                      _removenombreProduct(item);
+                                      _addNombreProduct(item);
                                     },
                                     icon: Icon(
-                                      Icons.remove_circle,
+                                      Icons.add_box_sharp,
                                       color: darkColor,
                                       size: 30,
                                     ),
@@ -265,7 +268,7 @@ class _CartWidgetState extends State<CartWidget> {
                           backgroundcolor: pageBackgroundColor,
                         );
                       }
-                      _showAlert();
+                      _ValideCommandeshowAlert();
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateColor.resolveWith(
@@ -319,13 +322,15 @@ class _CartWidgetState extends State<CartWidget> {
     }
   }
 
-  void _showAlert() {
+  void _ValideCommandeshowAlert() {
     ArtDialogArgs dialogArgs = ArtDialogArgs(
       type: ArtSweetAlertType.success,
       title: "Vente N°${randomReference}",
       text: "Commande validée avec succès 😇",
     );
     showCustomSweetAlert(context, dialogArgs);
+    _AddListeVente(randomReference, totalAmount);
+
     setState(() {
       for (var item in panierProduit) {
         item.nombreElement = 0;
@@ -335,5 +340,26 @@ class _CartWidgetState extends State<CartWidget> {
 
       randomReference = generateRandomReference();
     });
+  }
+}
+
+void _AddListeVente(String randrandomReference, double totalAmount) {
+  Vente vente = Vente(
+    idvente: randrandomReference,
+    datevente: DateTime.now(),
+    prixvente: totalAmount,
+    listeproduit: panierProduit,
+  );
+  listeVente.add(vente);
+  for (var vente in listeVente) {
+    print('ID Vente: ${vente.idvente}');
+    print('Date Vente: ${vente.datevente}');
+    print('Prix Vente: ${vente.prixvente}');
+    print('Liste Produit:');
+    for (var produit in vente.listeproduit) {
+      print('- Produit: ${produit.title}');
+      print('  Prix: ${produit.price}');
+      print('Nombreelement ${produit.nombreElement}');
+    }
   }
 }
