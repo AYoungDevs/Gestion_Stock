@@ -228,6 +228,18 @@ class AcceuilScreenSalesState extends State<AcceuilScreenSales> {
       builder: (BuildContext context) {
         String formattedDate = DateFormat("dd/MM/yyyy").format(item.datevente);
         return AlertDialog(
+          actionsAlignment: MainAxisAlignment.end,
+          actions: [
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red,
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("Fermer"),
+            )
+          ],
           title: Text("Details #${item.idvente}"),
           content: SingleChildScrollView(
             child: Column(
@@ -263,7 +275,7 @@ class AcceuilScreenSalesState extends State<AcceuilScreenSales> {
                         ),
                       ],
                     ),
-                    SizedBox(width: 430),
+                    SizedBox(width: 450),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -318,28 +330,31 @@ class AcceuilScreenSalesState extends State<AcceuilScreenSales> {
                                       child: Image.asset(produit.image),
                                     ),
                                   ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        produit.title,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(produit.categorie,
+                                  SizedBox(width: 20),
+                                  Container(
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          produit.title,
                                           style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                            "${produit.nombreElement} * ${produit.price} FCFA",
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(produit.categorie,
                                             style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.orange)),
-                                      )
-                                    ],
+                                                fontWeight: FontWeight.bold)),
+                                        Padding(
+                                          padding: const EdgeInsets.all(15),
+                                          child: Text(
+                                              "${produit.nombreElement} * ${produit.price} FCFA",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.orange)),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                  SizedBox(width: 500),
+                                  Spacer(),
                                   Text(
                                       " ${produit.nombreElement * produit.price} FCFA",
                                       style: TextStyle(color: Colors.orange))
