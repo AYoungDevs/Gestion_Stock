@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_stock/features/constants.features.dart';
 import 'package:gestion_stock/ui/screens/acceuil/acceuil.screen.dart';
+import 'package:gestion_stock/ui/screens/products/products.dart';
 import 'package:gestion_stock/ui/screens/profil/profil.dart';
 import 'package:gestion_stock/ui/styles/colors.style.dart';
 import '../Report/report.dart';
@@ -131,8 +132,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                       ),
                     ),
+                    SizedBox(height: screenHeight / 42),
+                    Container(
+                      height: screenHeight / 14,
+                      width: screenWidth / 5,
+                      alignment: Alignment.center,
+                      color: selectindex == 4 ? primaryColorTransparent : null,
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            selectindex = 4;
+                            print(selectindex);
+                          });
+                        },
+                        child: Text(
+                          "Produits",
+                          style: TextStyle(fontSize: 24, color: secondaryColor),
+                        ),
+                      ),
+                    ),
                     SizedBox(
-                      height: screenHeight * 0.45,
+                      height: screenHeight * 0.35,
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -190,6 +210,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
       return Sales();
     } else if (selectindex == 2) {
       return Report();
+    } else if (selectindex == 4) {
+      return ProductsScreen();
     }
   }
 }
