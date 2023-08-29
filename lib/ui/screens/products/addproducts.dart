@@ -75,14 +75,14 @@ class _AddProductsState extends State<AddProducts> {
                 Spacer(),
                 Container(
                   // DropdownSearch<String>(
-                  // items: const ["Alto", "Basse", "Soprano", 'Tenor'],
+                  // items: const ["Sucrerie", "Vins"],
                   // dropdownDecoratorProps: const DropDownDecoratorProps(
                   // dropdownSearchDecoration: InputDecoration(
                   // filled: true,
                   // fillColor: Color.fromARGB(255, 255, 255, 255),
                   // border: OutlineInputBorder(
                   // borderSide: BorderSide(color: Colors.black)),
-                  // labelText: "choisir ta voix",
+                  // labelText: "choisir la categorie",
                   // ),
                   // ),
                   // onChanged: print,
