@@ -38,6 +38,10 @@ dependencies:
   get: ^4.6.5
   animator: ^3.3.0
   art_sweetalert: ^0.0.5
+  dropdown_search: ^5.0.6
+  image_picker: ^1.0.2
+  file_picker: ^5.3.4
+
 
 dev_dependencies:
   flutter_test:

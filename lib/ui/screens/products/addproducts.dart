@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../../styles/colors.style.dart';
+import 'package:dropdown_search/dropdown_search.dart';
+import 'package:file_picker/file_picker.dart';
 
 class AddProducts extends StatefulWidget {
   @override
@@ -10,6 +14,20 @@ class AddProducts extends StatefulWidget {
 }
 
 class _AddProductsState extends State<AddProducts> {
+  List<String> Categorie = [
+    "sucrerie",
+    "vins",
+    "sucrerie",
+    "vins",
+    "sucrerie",
+    "vins",
+    "sucrerie",
+    "vins",
+    "sucrerie",
+    "vins",
+    "sucrerie",
+    "vins",
+  ];
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -74,36 +92,20 @@ class _AddProductsState extends State<AddProducts> {
                 ),
                 Spacer(),
                 Container(
-                  // DropdownSearch<String>(
-                  // items: const ["Sucrerie", "Vins"],
-                  // dropdownDecoratorProps: const DropDownDecoratorProps(
-                  // dropdownSearchDecoration: InputDecoration(
-                  // filled: true,
-                  // fillColor: Color.fromARGB(255, 255, 255, 255),
-                  // border: OutlineInputBorder(
-                  // borderSide: BorderSide(color: Colors.black)),
-                  // labelText: "choisir la categorie",
-                  // ),
-                  // ),
-                  // onChanged: print,
-                  // selectedItem: "",
-                  // ),
                   width: screenSize.width / 5,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: "Selectionner la categorie",
-                      labelStyle: TextStyle(color: primaryColor),
-                      filled: true,
-                      fillColor: secondaryColor,
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: primaryColor),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: secondaryColor),
-                        borderRadius: BorderRadius.circular(10),
+                  child: DropdownSearch<String>(
+                    items: Categorie,
+                    dropdownDecoratorProps: const DropDownDecoratorProps(
+                      dropdownSearchDecoration: InputDecoration(
+                        filled: true,
+                        fillColor: Color.fromARGB(255, 255, 255, 255),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black)),
+                        labelText: "choisir la categorie",
                       ),
                     ),
+                    onChanged: print,
+                    selectedItem: "",
                   ),
                 ),
               ],
@@ -186,7 +188,7 @@ class _AddProductsState extends State<AddProducts> {
               InkWell(
                 onTap: () {
                   print('photo');
-                  //_selectedfilesImage()
+                  _selectedfilesImage();
                 },
                 child: const Icon(
                   Icons.photo,
@@ -205,13 +207,11 @@ class _AddProductsState extends State<AddProducts> {
     );
   }
 
-  //_selectedfilesImage() async {
-  // result = await FilePicker.platform.pickFiles();
-  //if (result != null) {
-  //file = File(result?.files.single.path as String);
-  //setState(() {
-  //image.text = file!.path;
-  //});
-  // } else {}
-  // }
+  _selectedfilesImage() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    if (result != null) {
+      File file = File(result?.files.single.path as String);
+      setState(() {});
+    } else {}
+  }
 }
